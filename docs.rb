@@ -62,20 +62,16 @@ end
 # @return String
 def friendly_types_list(arr)
   fixed_arr = Array(arr).map do |x|
-    if x.nil?
-      "nil"
+    case x
+    when "TrueClass"
+      "true"
+    when "FalseClass"
+      "false"
     else
-      case x
-      when "TrueClass"
-        "true"
-      when "FalseClass"
-        "false"
-      else
-        x
-      end
+      x
     end
   end
-  fixed_arr.join(", ")
+  fixed_arr.compact.join(", ")
 end
 
 # Makes sure the resource name is bolded within the description
